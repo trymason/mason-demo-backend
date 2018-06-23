@@ -9,9 +9,6 @@ require("dotenv").config()
 const port = process.env.PORT || process.argv[2]
 const host = process.env.HOST
 
-console.log('PORTTT', port)
-console.log('HOSTT', host)
-
 let args
 process.env.NODE_ENV === "production" ? (args = [port]) : (args = [port, host])
 
