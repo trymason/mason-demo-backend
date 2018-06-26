@@ -14,7 +14,7 @@ module.exports = () => {
   .get(controller.usersShow)
 
   router.route("/authy")
-  .post(addAuthyID)
+  .post(controller.addAuthyID)
 
   return router
 }

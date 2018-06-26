@@ -69,6 +69,12 @@ class HomeController {
           }
         })
     }
+
+    addAuthyID(req, res) {
+        const service = new Service(req)
+        const { id, authyID } = req.body
+
+    }
 }
 
 module.exports = new HomeController
