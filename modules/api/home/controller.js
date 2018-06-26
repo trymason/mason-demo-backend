@@ -19,10 +19,11 @@ class HomeController {
     }
 
     usersCreate(req, res) {
+        const { User } = req.models
         const service = new Service(req)
         const { email, password } = req.body
         const validatedUser = service.validateUserRegistrationReq(req.body)
-    
+
         if (validatedUser.error) {
           return res
           .status(validatedUser.status)
@@ -49,11 +50,10 @@ class HomeController {
             }
           })
         }
-        findOrCreate({ email, password })
+        findOrCreate({ email }, { email, password })
     }
 
     loginUser(req, res) {
-        const { User } = req.models
         const { email, password } = req.body
         const service = new Service(req)
     
