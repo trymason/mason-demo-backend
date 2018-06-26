@@ -21,7 +21,7 @@ class UsersService {
   
     findByIdAndUpdate(id, body) {
       const { User } = this.req.models
-      const { fname, lname, password } = body
+      const { email, password } = body
       let updates = {}
   
       if (email) {
@@ -46,6 +46,33 @@ class UsersService {
             return user
         }
       })
+    }
+
+    validatePassword(password) {
+        if (!password) {
+          return { status: 400, error: "You must provide a password." }
+        }
+        if (password.length < 8) {
+          return { status: 400, error: "Password must be 8 characters or longer." }
+        }
+        if (password.length > 128) {
+          return { status: 400, error: "Password must be 128 characters or less." }
+        }
+        return true
+    }
+
+    validateUserRegistrationReq(user) {
+        if (!user.email) {
+          return { status: 400, error: "You must provide an email." }
+        }
+    
+        const validatePassword = this.validatePassword(user.password)
+    
+        if (validatePassword.error) {
+          return validatePassword
+        }
+    
+        return true
     }
 }
   
