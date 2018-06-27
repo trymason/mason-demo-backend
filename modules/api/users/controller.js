@@ -40,7 +40,7 @@ class UsersController {
         service.logIn(email, password)
         .then(result => {
           if (result.error) {
-            return res.status(result.status).json({ error: result.error });
+            return res.status(400).json({ error: result.error });
           } else {
             return res.status(201).send(result);
           }
