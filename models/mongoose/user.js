@@ -20,6 +20,13 @@ UserSchema.methods.validatePassword = function(password) {
   return bcrypt.compareSync(password, this.passwordHash);
 };
 
+UserSchema.methods.getPublicObject = function() {
+  return {
+    email: this.email,
+    authyUserId: this.authyUserId
+  };
+};
+
 const User = mongoose.model("User", UserSchema);
 
 module.exports = User;

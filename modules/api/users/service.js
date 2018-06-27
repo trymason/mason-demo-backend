@@ -9,31 +9,13 @@ class UsersService {
       return User.create(data);
     }
 
-    findByIdAndUpdate(id, body) {
-      const { User } = this.req.models;
-      const { email, password } = body;
-      const updates = {};
-
-      if (email) {
-        updates.email = email;
-      }
-      if (password) {
-        if (this.validatePassword(password).error) {
-          return this.validatePassword(password);
-        } else {
-          updates.password = password;
-        }
-      }
-      return User.findByIdAndUpdate(id, updates);
-    }
-
     logIn(email, password) {
       const { User } = this.req.models;
       return User.findOne({ email }).then(user => {
         if (!user || !user.validatePassword(password)) {
           return { status: 401, error: "The email or password doesn't match." };
         } else {
-            return { email };
+            return user.getPublicObject();
         }
       });
     }

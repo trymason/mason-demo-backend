@@ -4,10 +4,10 @@ const controller = require("./controller");
 module.exports = () => {
   const router = express.Router();
 
-  router.route("/login")
-  .post(controller.loginUser);
+  router.route("/users/login")
+  .post(controller.usersLogin);
 
-  router.route("/signup")
+  router.route("/users/signup")
   .post(controller.usersCreate);
 
   return router;
