@@ -1,26 +1,11 @@
 const Service = require('./service');
 
 class HomeController {
-    usersShow(req, res) {
-        const service = new Service(req);
-        const { id } = req.params;
-
-        service.fetchUserById(id)
-        .then(user => {
-          user = user.toObject();
-          delete user.passwordHash;
-          res.json({ user: user });
-        })
-        .catch(e => {
-          console.log(`\nError at GET /users/${id}`, e);
-          res.status(400).json({ error: e });
-        });
-    }
 
     usersCreate(req, res) {
         const { User } = req.models;
         const service = new Service(req);
-        const { email, password } = req.body;
+        const { email, password, authyUserId } = req.body;
         const validatedUser = service.validateUserRegistrationReq(req.body);
 
         if (validatedUser.error) {
@@ -67,12 +52,6 @@ class HomeController {
             return res.status(201).send(result);
           }
         });
-    }
-
-    addAuthyID(req, res) {
-        // const service = new Service(req);
-        // const { id, authyID } = req.body;
-        return res.status(200).send("");
     }
 }
 
