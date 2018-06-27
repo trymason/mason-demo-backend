@@ -2,16 +2,15 @@ class UsersService {
 
     constructor(req) {
       this.req = req;
+      this.User = req.models.User;
     }
 
     createUser(data) {
-      const { User } = this.req.models;
-      return User.create(data);
+      return this.User.create(data);
     }
 
     logIn(email, password) {
-      const { User } = this.req.models;
-      return User.findOne({ email }).then(user => {
+      return this.User.findOne({ email }).then(user => {
         if (!user || !user.validatePassword(password)) {
           return { error: "The email or password doesn't match." };
         } else {
