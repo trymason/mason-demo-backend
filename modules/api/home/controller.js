@@ -73,7 +73,7 @@ class HomeController {
     addAuthyID(req, res) {
         const service = new Service(req)
         const { id, authyID } = req.body
-
+        return res.status(200).send("")
     }
 }
 
