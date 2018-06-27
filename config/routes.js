@@ -1,8 +1,7 @@
-const vhost = require('vhost')
-const apiRoutes = require("../modules/api/home/router")()
+const apiRoutes = require("../modules/api/home/router")();
 
-const { reqLocals } = require("../middleware")
+const { reqLocals } = require("../middleware");
 
 module.exports = app => {
-  app.use("/", reqLocals(app), apiRoutes)
-}
+  app.use("/", reqLocals(app), apiRoutes);
+};
