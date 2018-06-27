@@ -1,6 +1,8 @@
 const _ = require('lodash');
 const Service = require('./service');
 
+const userResponse = (user) => ({ user: user.getPublicObject() });
+
 class UsersController {
 
     usersCreate(req, res) {
@@ -21,7 +23,7 @@ class UsersController {
         const create = data => {
           service.createUser(data)
           .then(user => {
-            res.status(201).send(user);
+            res.status(201).send(userResponse(user));
           })
           .catch(err => {
             res.status(401).json({ error: `Error persisting user: ${err}` });
@@ -42,7 +44,7 @@ class UsersController {
           if (result.error) {
             return res.status(400).json({ error: result.error });
           } else {
-            return res.status(201).send(result);
+            return res.status(201).send(userResponse(result));
           }
         });
     }

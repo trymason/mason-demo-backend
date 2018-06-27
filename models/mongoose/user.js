@@ -22,6 +22,7 @@ UserSchema.methods.validatePassword = function(password) {
 
 UserSchema.methods.getPublicObject = function() {
   return {
+    id: this.id,
     email: this.email,
     authyUserId: this.authyUserId
   };

@@ -14,7 +14,7 @@ class UsersService {
         if (!user || !user.validatePassword(password)) {
           return { error: "The email or password doesn't match." };
         } else {
-            return user.getPublicObject();
+            return user;
         }
       });
     }
