@@ -10,7 +10,7 @@ module.exports = () => {
   router.route("/signup")
   .post(controller.usersCreate)
 
-  router.route("/user")
+  router.route("/user/:id")
   .get(controller.usersShow)
 
   router.route("/authy")
