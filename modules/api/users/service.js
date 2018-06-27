@@ -3,27 +3,17 @@ class UsersService {
     constructor(req) {
       this.req = req;
     }
-  
-    fetchUsers() {
-      const { User } = this.req.models;
-      return User.find();
-    }
-  
-    fetchUserById(id) {
-      const { User } = this.req.models;
-      return User.findById(id);
-    }
-  
+
     createUser(data) {
       const { User } = this.req.models;
       return User.create(data);
     }
-  
+
     findByIdAndUpdate(id, body) {
       const { User } = this.req.models;
       const { email, password } = body;
       const updates = {};
-  
+
       if (email) {
         updates.email = email;
       }
@@ -36,7 +26,7 @@ class UsersService {
       }
       return User.findByIdAndUpdate(id, updates);
     }
-  
+
     logIn(email, password) {
       const { User } = this.req.models;
       return User.findOne({ email }).then(user => {
@@ -65,15 +55,17 @@ class UsersService {
         if (!user.email) {
           return { status: 400, error: "You must provide an email." };
         }
-    
+        if (!user.authyUserId) {
+          return { status: 400, error: "You must provide an authyUserId." };
+        }
         const validatePassword = this.validatePassword(user.password);
-    
+
         if (validatePassword.error) {
           return validatePassword;
         }
-    
+
         return true;
     }
 }
-  
+
 module.exports = UsersService;

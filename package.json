@@ -30,7 +30,7 @@
     "istanbul": "^0.4.5",
     "jasmine": "^2.6.0",
     "jsonwebtoken": "^7.4.1",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.10",
     "mongoose": "^4.10.4",
     "mongoose-deep-populate": "^3.0.0",
     "mongoose-unique-validator": "^1.0.5",

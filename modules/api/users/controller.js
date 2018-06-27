@@ -1,18 +1,22 @@
+const _ = require('lodash');
 const Service = require('./service');
 
-class HomeController {
+class UsersController {
 
     usersCreate(req, res) {
-        const { User } = req.models;
         const service = new Service(req);
-        const { email, password, authyUserId } = req.body;
         const validatedUser = service.validateUserRegistrationReq(req.body);
-
         if (validatedUser.error) {
           return res
           .status(validatedUser.status)
           .json({ error: validatedUser.error });
         }
+
+        const sanitizedRequest = {
+          email: _.trim(req.body.email),
+          password: req.body.password,
+          authyUserId: _.trim(req.body.authyUserId)
+        };
 
         const create = data => {
           service.createUser(data)
@@ -23,25 +27,14 @@ class HomeController {
             res.status(401).json({ error: `Error persisting user: ${err}` });
           });
         };
-
-        const findOrCreate = (query, data) => {
-          return User.findOne(query)
-          .then(user => {
-            if (user) {
-              return res.status(200).send(user);
-            } else {
-              create(data);
-            }
-          });
-        };
-        findOrCreate({ email }, { email, password });
+        create(sanitizedRequest);
     }
 
     loginUser(req, res) {
         const { email, password } = req.body;
         const service = new Service(req);
 
-        if (!email || !password) {
+        if (_.isEmpty(_.trim(email)) || (_.isEmpty(password))) {
           return res.status(400).json("You must send the email and the password.");
         }
         service.logIn(email, password)
@@ -55,4 +48,4 @@ class HomeController {
     }
 }
 
-module.exports = new HomeController;
+module.exports = new UsersController;
