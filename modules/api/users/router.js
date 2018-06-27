@@ -7,7 +7,7 @@ module.exports = () => {
   router.route("/users/login")
   .post(controller.usersLogin);
 
-  router.route("/users/signup")
+  router.route("/users")
   .post(controller.usersCreate);
 
   return router;
