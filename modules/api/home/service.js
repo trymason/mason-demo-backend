@@ -43,7 +43,7 @@ class UsersService {
         if (!user || !user.validatePassword(password)) {
           return { status: 401, error: "The email or password doesn't match." }
         } else {
-            return user
+            return { email }
         }
       })
     }
