@@ -1,13 +1,13 @@
-const JwtStrategy = require("passport-jwt").Strategy
+const JwtStrategy = require("passport-jwt").Strategy;
 
 class JWTStrategy extends JwtStrategy {
-  authenticate(req, options) {
-    var self = this
+  authenticate(req) {
+    var self = this;
 
-    var token = self._jwtFromRequest(req)
+    var token = self._jwtFromRequest(req);
 
     if (!token) {
-      return self.pass()
+      return self.pass();
     }
 
     // Verify the JWT
@@ -16,31 +16,31 @@ class JWTStrategy extends JwtStrategy {
       payload
     ) {
       if (jwt_err) {
-        return self.fail(jwt_err)
+        return self.fail(jwt_err);
       } else {
         //Pass the parsed token to the user
         var verified = function(err, user, info) {
           if (err) {
-            return self.error(err)
+            return self.error(err);
           } else if (!user) {
-            return self.fail(info)
+            return self.fail(info);
           } else {
-            return self.success(user, info)
+            return self.success(user, info);
           }
-        }
+        };
 
         try {
           if (self._passReqToCallback) {
-            self._verify(req, payload, verified)
+            self._verify(req, payload, verified);
           } else {
-            self._verify(payload, verified)
+            self._verify(payload, verified);
           }
         } catch (ex) {
-          self.error(ex)
+          self.error(ex);
         }
       }
-    })
+    });
   }
 }
 
-module.exports = JWTStrategy
+module.exports = JWTStrategy;

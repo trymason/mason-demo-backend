@@ -1,33 +1,29 @@
+const User = require('../user');
 module.exports = () => {
 
   // ----------------------------------------
   // Create Users
   // ----------------------------------------
-  console.log('Creating Users')
-  let users = []
+
+  console.log('Creating Users');
+  const users = [];
   users.push( new User({
-    fname: 'Tom',
-    lname: 'Mclaughlin',
     email: 'tom@trymason.com',
-    password: '111111',
-    components: []
-  }))
+    password: '111111'
+  }));
   users.push( new User({
-    fname: 'Kareem',
-    lname: 'Sabri',
     email: 'kareem@trymason.com',
-    password: '111111',
-    components: []
-  }))
+    password: '111111'
+  }));
 
   // ----------------------------------------
   // Finish
   // ----------------------------------------
-  let promises = [];
+  const promises = [];
   [ users ].forEach(collection => {
     collection.forEach(model => {
-      promises.push(model.save())
-    })
-  })
-  return Promise.all(promises)
-}
+      promises.push(model.save());
+    });
+  });
+  return Promise.all(promises);
+};

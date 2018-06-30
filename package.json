@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Mason backend",
   "engines": {
-    "node": "8.9.2"
+    "node": "10.4.1"
   },
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
   "keywords": [],
   "author": "Mason",
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "cli-highlight": "^1.1.4",
@@ -29,7 +30,7 @@
     "istanbul": "^0.4.5",
     "jasmine": "^2.6.0",
     "jsonwebtoken": "^7.4.1",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.10",
     "mongoose": "^4.10.4",
     "mongoose-deep-populate": "^3.0.0",
     "mongoose-unique-validator": "^1.0.5",
