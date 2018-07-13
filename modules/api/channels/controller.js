@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const Service = require('./service');
 
-
+const channelResponse = (channel) => ({ channel: channel.getPublicObject() })
 
 class ChannelsController {
   channelsIndex(req, res) {
@@ -11,7 +11,9 @@ class ChannelsController {
       if (result.error) {
         return res.status(400).json({ error: result.error });
       } else {
-        return res.status(201).send((result));
+        return res.status(201).send({
+          channels: _.forEach(result, (c) => (channelResponse(c)))
+        });
       }
     });
   }
