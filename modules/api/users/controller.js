@@ -17,7 +17,6 @@ class UsersController {
         const sanitizedRequest = {
           email: _.trim(req.body.email),
           password: req.body.password,
-          authyUserId: _.trim(req.body.authyUserId)
         };
 
         const create = data => {

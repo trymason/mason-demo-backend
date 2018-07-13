@@ -4,5 +4,7 @@ var bluebird = require("bluebird");
 mongoose.Promise = bluebird;
 
 module.exports = {
-  User: require("./user")
+  Channel: require("./channel"),
+  Conversation: require("./conversation"),
+  User: require("./user"),
 };

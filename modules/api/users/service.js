@@ -36,9 +36,6 @@ class UsersService {
         if (!user.email) {
           return { error: "You must provide an email." };
         }
-        if (!user.authyUserId) {
-          return { error: "You must provide an authyUserId." };
-        }
         const validatePassword = this.validatePassword(user.password);
 
         if (validatePassword.error) {

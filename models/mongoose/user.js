@@ -5,9 +5,9 @@ const uniqueValidator = require("mongoose-unique-validator");
 const UserSchema = mongoose.Schema(
   {
     email: { type: String, required: true, unique: true, index: true },
-    authyUserId: { type: String, required: true, unique: true },
     passwordHash: { type: String, required: true },
-  }
+    photoUrl: { type: String, unique: true }
+  }, { timestamps: true }
 );
 
 UserSchema.plugin(uniqueValidator);
@@ -24,7 +24,7 @@ UserSchema.methods.getPublicObject = function() {
   return {
     id: this.id,
     email: this.email,
-    authyUserId: this.authyUserId
+    photoUrl: this.photoUrl,
   };
 };
 
