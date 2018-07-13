@@ -15,19 +15,26 @@ module.exports = () => {
   const users = [];
   users.push( new User({
     email: 'tom@trymason.com',
+    name: 'tom mclaughlin',
     password: '11111111',
     photoUrl: 'https://randomuser.me/api/portraits/men/4.jpg'
   }));
   _.times(10, (i) => {
+    let fname = faker.name.firstName()
+    let lname = faker.name.lastName()
     users.push( new User({
-      email: faker.internet.email(),
+      name: `${fname} ${lname}`,
+      email: `${fname}_${lname}@trymason.com`,
       password: '11111111',
       photoUrl: `https://randomuser.me/api/portraits/men/${i+5}.jpg`
     }));
   });
   _.times(10, (i) => {
+    let fname = faker.name.firstName()
+    let lname = faker.name.lastName()
     users.push( new User({
-      email: faker.internet.email(),
+      name: `${fname} ${lname}`,
+      email: `${fname}_${lname}@trymason.com`,
       password: '11111111',
       photoUrl: `https://randomuser.me/api/portraits/women/${i+5}.jpg`
     }));

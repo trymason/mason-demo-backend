@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 const ChannelSchema = mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
-    members: { type: Array },
+    members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     visibility: { type: String },
   }, { timestamps: true }
 );
