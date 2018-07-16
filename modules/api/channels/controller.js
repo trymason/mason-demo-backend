@@ -11,8 +11,8 @@ class ChannelsController {
       if (result.error) {
         return res.status(400).json({ error: result.error });
       } else {
-        return res.status(201).send({
-          channels: _.forEach(result, (c) => (channelResponse(c)))
+        return res.status(200).send({
+          data: _.forEach(result, (c) => (channelResponse(c)))
         });
       }
     });
