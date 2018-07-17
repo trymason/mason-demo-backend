@@ -7,5 +7,8 @@ module.exports = () => {
   router.route("/channels")
   .get(controller.channelsIndex);
 
+  router.route("/channels/:channelId")
+  .get(controller.channelsShow);
+
   return router;
 };
