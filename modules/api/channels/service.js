@@ -12,6 +12,10 @@ class ChannelsService {
     }
 
     channelsShow(data) {
+      return this.Channel.find({ _id: this.req.params.channelId })
+    }
+
+    channelsConversationsIndex(data) {
       return this.Channel.aggregate([
         { $match: { '_id': mongoose.Types.ObjectId(this.req.params.channelId) }},
         { $lookup: {
@@ -21,12 +25,8 @@ class ChannelsService {
             as: 'convos'
           }
         },
+        { $unwind: "$convos" },
         { $project: {
-          "_id": 1,
-          "createdAt": 1,
-          "name": 1,
-          "visibility": 1,
-          "members": 1,
           "convos.createdAt": 1,
           "convos.updatedAt": 1,
           "convos.userId": 1,
