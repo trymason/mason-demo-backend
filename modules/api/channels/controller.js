@@ -1,10 +1,7 @@
 const _ = require('lodash');
 const Service = require('./service');
 
-const channelResponse = (channel) => {
-  console.log('CHANNEL', channel)
-  return ({ channel })
-}
+const channelResponse = (channel) => ({ channel })
 
 class ChannelsController {
   channelsIndex(req, res) {

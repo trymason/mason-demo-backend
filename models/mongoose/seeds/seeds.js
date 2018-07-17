@@ -5,6 +5,9 @@ const User = require('../user');
 const Conversation = require('../conversation');
 const Channel = require('../channel');
 
+function randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
 
 module.exports = () => {
   // ----------------------------------------
@@ -65,7 +68,8 @@ module.exports = () => {
       conversations.push( new Conversation({
         channelId: channel._id,
         message: faker.lorem.sentence(),
-        userId: user._id
+        userId: user._id,
+        createdAt: randomDate(new Date(2018, 6, 1), new Date())
       }))
       channel.members = _.uniq(_.concat(channel.members, user._id))
     })
