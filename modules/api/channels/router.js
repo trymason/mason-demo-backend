@@ -11,7 +11,8 @@ module.exports = () => {
   .get(controller.channelsShow);
 
   router.route("/channels/:channelId/conversations")
-  .get(controller.channelsConversationsIndex);
+  .get(controller.channelsConversationsIndex)
+  .post(controller.channelsConversationsCreate);
 
   return router;
 };

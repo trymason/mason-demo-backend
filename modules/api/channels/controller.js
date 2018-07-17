@@ -32,6 +32,30 @@ class ChannelsController {
     });
   }
 
+  channelsConversationsCreate(req, res) {
+    const service = new Service(req);
+    const validatedConversation = service.validateConversationCreate(req.body);
+    if (validatedConversation.error) {
+      return res.json({ error: validatedConversation.error });
+    }
+
+    const sanitizedRequest = {
+      message: _.trim(req.body.message),
+      channelId: req.body.channelId,
+    };
+
+    const create = data => {
+      service.channelsConversationsCreate(data)
+      .then(channel => {
+        res.status(201).send(channelResponse(channel));
+      })
+      .catch(err => {
+        res.status(401).json({ error: `Error persisting message: ${err}` });
+      });
+    };
+    create(sanitizedRequest);
+  }
+
   channelsConversationsIndex(req, res) {
     const service = new Service(req);
     service.channelsConversationsIndex()

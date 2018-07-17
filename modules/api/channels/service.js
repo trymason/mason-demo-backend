@@ -18,6 +18,17 @@ class ChannelsService {
     channelsConversationsIndex(data) {
       return this.Conversation.find({ channelId: this.req.params.channelId }).populate({ path: 'userId', select: 'name photoUrl'}).sort({ createdAt: 1 })
     }
+
+    channelsConversationsCreate(data) {
+      return this.Conversation.create({ channelId: this.req.params.channelId, ...data });
+    }
+
+    validateConversationCreate(data) {
+      if (!data.message) {
+        return { error: "Message can't be blank" };
+      }
+      return true;
+    }
 }
 
 module.exports = ChannelsService;
