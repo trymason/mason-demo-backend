@@ -16,23 +16,7 @@ class ChannelsService {
     }
 
     channelsConversationsIndex(data) {
-      return this.Channel.aggregate([
-        { $match: { '_id': mongoose.Types.ObjectId(this.req.params.channelId) }},
-        { $lookup: {
-            from: 'conversations',
-            localField: '_id',
-            foreignField: 'channelId',
-            as: 'convos'
-          }
-        },
-        { $unwind: "$convos" },
-        { $project: {
-          "convos.createdAt": 1,
-          "convos.updatedAt": 1,
-          "convos.userId": 1,
-          "convos.message": 1
-        }}
-      ])
+      return this.Conversation.find({ channelId: this.req.params.channelId }).populate({ path: 'userId', select: 'name photoUrl'})
     }
 }
 
