@@ -22,7 +22,7 @@ module.exports = () => {
     password: '11111111',
     photoUrl: 'https://randomuser.me/api/portraits/men/4.jpg'
   }));
-  _.times(10, (i) => {
+  _.times(4, (i) => {
     let fname = faker.name.firstName()
     let lname = faker.name.lastName()
     users.push( new User({
@@ -32,7 +32,7 @@ module.exports = () => {
       photoUrl: `https://randomuser.me/api/portraits/men/${i+5}.jpg`
     }));
   });
-  _.times(10, (i) => {
+  _.times(4, (i) => {
     let fname = faker.name.firstName()
     let lname = faker.name.lastName()
     users.push( new User({
@@ -61,7 +61,7 @@ module.exports = () => {
   const conversations = [];
   console.log('Adding conversations for all users')
   _.forEach(users, (user) => {
-    _.times(20, () => {
+    _.times(5, () => {
       // Add conversations in random channels to all users
       // Put these conversations into one of the 4 randomly created channels
       const channel = channels[Math.floor(Math.random() * 3) + 0]
