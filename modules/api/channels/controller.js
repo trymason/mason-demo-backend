@@ -42,6 +42,7 @@ class ChannelsController {
     const sanitizedRequest = {
       message: _.trim(req.body.message),
       channelId: req.body.channelId,
+      userId: req.body.userId,
     };
 
     const create = data => {
