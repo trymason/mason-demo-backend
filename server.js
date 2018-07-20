@@ -1,24 +1,22 @@
-const express = require("express");
-const app = express();
+const app = require('express')();
+const server = require('http').Server(app);
+const io = require('socket.io')(server)
+
 
 require("dotenv").config();
+
 
 // ----------------------------------------
 // Server
 // ----------------------------------------
-const port = process.env.PORT || process.argv[2];
+const port = process.env.PORT || process.argv[2] || 3000;
 const host = process.env.HOST;
-
-let args;
-process.env.NODE_ENV === "production" ? (args = [port]) : (args = [port, host]);
-
-args.push(() => {
-  console.log(`Listening: http://${host}:${port}\n`);
-});
 
 // If we're running this file directly, start up the server
 if (require.main === module) {
-  app.listen.apply(app, args);
+  server.listen(port, () => {
+    console.log(`Listening on: http://${host}:${port}`)
+  })
 }
 
 // ----------------------------------------
@@ -84,6 +82,20 @@ app.use((req, res, next) => {
   } else {
     require("./utils/mongo")(req).then(() => next());
   }
+});
+
+// ---------------------------------------
+// Sockets
+// ---------------------------------------
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+  socket.on('new chat message', function(msg){
+    console.log('message: ' + msg);
+    io.emit('new chat message', msg)
+  });
 });
 
 require("./config/init")(app);

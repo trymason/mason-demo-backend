@@ -32,6 +32,12 @@ class ChannelsController {
     });
   }
 
+  channelsTest(req, res) {
+    return res.status(200).send({
+      data: _.forEach(result, (c) => (channelResponse(c)))
+    });
+  }
+
   channelsConversationsCreate(req, res) {
     const service = new Service(req);
     const validatedConversation = service.validateConversationCreate(req.body);

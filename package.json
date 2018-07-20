@@ -44,6 +44,7 @@
     "request-promise": "^4.2.1",
     "require-directory": "^2.1.1",
     "shortid": "^2.2.8",
+    "socket.io": "^2.1.1",
     "string-template": "^1.0.0",
     "url": "^0.11.0",
     "vhost": "^3.0.2"
