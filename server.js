@@ -83,7 +83,7 @@ app.use((req, res, next) => {
     require("./utils/mongo")(req).then(() => next());
   }
 });
-
+=
 // ---------------------------------------
 // Sockets
 // ---------------------------------------
@@ -92,9 +92,9 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
-  socket.on('new chat message', function(msg){
-    console.log('message: ' + msg);
-    io.emit('new chat message', msg)
+  socket.on('new chat message', function(data){
+    console.log('message: ' + data.message);
+    io.emit('new chat message', data)
   });
 });
 
