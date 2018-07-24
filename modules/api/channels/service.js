@@ -8,11 +8,11 @@ class ChannelsService {
     }
 
     channelsIndex(data) {
-      return this.Channel.find().populate({path: 'members', select: 'name email'})
+      return this.Channel.find().populate({path: 'members', select: 'name email'}).sort({ name: 1 })
     }
 
     channelsShow(data) {
-      return this.Channel.find({ _id: this.req.params.channelId }).sort({ name: 1 })
+      return this.Channel.find({ _id: this.req.params.channelId })
     }
 
     createChannel(data) {
