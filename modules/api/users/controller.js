@@ -16,6 +16,7 @@ class UsersController {
 
         const sanitizedRequest = {
           email: _.trim(req.body.email),
+          name: _.trim(req.body.name),
           password: req.body.password,
         };
 
@@ -34,7 +35,6 @@ class UsersController {
     usersLogin(req, res) {
         const service = new Service(req);
         const { email, password } = req.body;
-
         if (_.isEmpty(_.trim(email)) || (_.isEmpty(password))) {
           return res.status(400).json("You must send the email and the password.");
         }

@@ -25,6 +25,7 @@ UserSchema.methods.getPublicObject = function() {
   return {
     id: this.id,
     email: this.email,
+    name: this.name,
     photoUrl: this.photoUrl,
   };
 };
