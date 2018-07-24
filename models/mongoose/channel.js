@@ -3,8 +3,9 @@ var mongoose = require("mongoose");
 const ChannelSchema = mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
-    members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    visibility: { type: String },
+    purpose: { type: String },
+    members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', default: [] }],
+    visibility: { type: String, default: 'public' },
   }, { timestamps: true }
 );
 
@@ -12,6 +13,7 @@ ChannelSchema.methods.getPublicObject = function() {
   return {
     id: this.id,
     name: this.name,
+    purpose: this.purpose,
     members: this.members,
     visibility: this.visibility,
   };

@@ -7,7 +7,7 @@ class ConversationsController {
   conversationsCreate(req, res) {
     const service = new Service(req);
     const validatedConversation = service.validateConversationCreate(req.body);
-    console.log('validatedConversation', validatedConversation)
+
     if (validatedConversation.error) {
       return res.json({ error: validatedConversation.error });
     }
@@ -18,7 +18,6 @@ class ConversationsController {
       userId: req.body.userId,
     };
 
-    console.log('conversations sanitizedRequest', sanitizedRequest)
     const create = data => {
       service.conversationsCreate(data)
       .then(channel => {
