@@ -12,7 +12,7 @@ class ChannelsService {
     }
 
     channelsShow(data) {
-      return this.Channel.find({ _id: this.req.params.channelId })
+      return this.Channel.find({ _id: this.req.params.channelId }).sort({ name: 1 })
     }
 
     createChannel(data) {
@@ -20,7 +20,7 @@ class ChannelsService {
     }
 
     channelsConversationsIndex(data) {
-      return this.Conversation.find({ channelId: this.req.params.channelId }).populate({ path: 'userId', select: 'name photoUrl'}).sort({ 'name': 1 })
+      return this.Conversation.find({ channelId: this.req.params.channelId }).populate({ path: 'userId', select: 'name photoUrl'}).sort({ createdAt: 1 })
     }
 
     channelsConversationsCreate(data) {
