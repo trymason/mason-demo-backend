@@ -7,7 +7,6 @@ class ConversationsService {
     }
 
     conversationsCreate(data) {
-      console.log('new convo data', data)
       return this.Conversation.create(data);
     }
 

@@ -20,7 +20,7 @@ class ChannelsService {
     }
 
     channelsConversationsIndex(data) {
-      return this.Conversation.find({ channelId: this.req.params.channelId }).populate({ path: 'userId', select: 'name photoUrl'}).sort({ createdAt: 1 })
+      return this.Conversation.find({ channelId: this.req.params.channelId }).populate({ path: 'userId', select: 'name photoUrl'}).sort({ name: 1 })
     }
 
     channelsConversationsCreate(data) {
