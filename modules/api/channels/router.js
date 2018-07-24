@@ -10,12 +10,8 @@ module.exports = () => {
   router.route("/channels/:channelId")
   .get(controller.channelsShow);
 
-  router.route("/channels/test")
-  .get(controller.channelsTest);
-
   router.route("/channels/:channelId/conversations")
-  .get(controller.channelsConversationsIndex)
-  .post(controller.channelsConversationsCreate);
+  .get(controller.channelsConversationsIndex);
 
   return router;
 };
