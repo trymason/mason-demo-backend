@@ -10,7 +10,6 @@ class UsersController {
         const validatedUser = service.validateUserRegistrationReq(req.body);
         if (validatedUser.error) {
           return res
-          .status(validatedUser.status)
           .json({ error: validatedUser.error });
         }
 
